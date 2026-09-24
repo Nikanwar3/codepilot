@@ -94,9 +94,11 @@ its own tests, not a single generated dump.
 - [x] **Step 1 — Backend foundation.** FastAPI skeleton, typed config
       (pydantic-settings), structured logging (structlog), async Postgres + Redis
       connectivity, Alembic wiring, Docker Compose, liveness/readiness probes, CI.
-- [ ] Step 2 — Database schema: `users`, `repositories`, `files`, `code_chunks`
-      (pgvector column), `tasks`, `agent_runs`, `tool_calls`, `findings`, `patches`,
-      `test_runs`.
+- [x] **Step 2 — Database schema.** 10 SQLAlchemy 2.0 models (`users`,
+      `repositories`, `files`, `code_chunks` with a pgvector `Vector(1536)`
+      column + HNSW index, `tasks`, `agent_runs`, `tool_calls`, `findings`,
+      `patches`, `test_runs`), native Postgres enums, FK cascades, and the
+      first Alembic migration — schema-validated against a real local Postgres.
 - [ ] Step 3 — Repository ingestion: clone, Tree-sitter parsing, chunking.
 - [ ] Step 4 — RAG: embeddings, pgvector retrieval, reranking.
 - [ ] Step 5 — LangGraph agent graph + tool calling (`read_file`, `search_code`,

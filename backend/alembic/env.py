@@ -10,13 +10,10 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config, pool
 
+import app.models  # noqa: F401 — populates Base.metadata for autogenerate
 from alembic import context
 from app.core.config import settings
 from app.db.base import Base
-
-# Import every model module here so Base.metadata is fully populated before
-# autogenerate runs. Empty for now — models land in the next step.
-# from app.models import repository, user  # noqa: F401
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL_SYNC)
